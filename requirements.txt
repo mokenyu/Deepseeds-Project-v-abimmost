@@ -1,0 +1,4 @@
+# Core Python dependencies for the Deepseeds project
+# Auto-derived from scanning all .py files for external imports
+
+streamlit
