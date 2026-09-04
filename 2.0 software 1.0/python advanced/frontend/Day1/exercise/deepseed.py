@@ -77,41 +77,33 @@ else:
                 with col_left:
                     with st.chat_message(msg["role"]):
                         st.write(msg["text"]) # ({msg.get('time', '')})
-                    
-with st.form(key="chat_form", clear_on_submit=True):
-    col1, col2 = st.columns([0.85, 0.15])
-    with col1:
-        user_input = st.text_input("Message DEEPSEED:", placeholder="Type your message here...")
-    with col2:
-        send = st.form_submit_button("Send 🚀", use_container_width=True)
 
-    if send:
-        if user_input:
-            time_now = datetime.now().strftime("%H:%M")
-            # Append user message
-            st.session_state.messages.append({
-                "role": "user",
-                "text": user_input,
-                "time": time_now
-            })
+user_input = st.chat_input(placeholder="Type your message here...")
 
-            matched_reply = None
-            for action_text, reply_text in quick_actions.items():
-                if action_text.lower() in user_input.lower():
-                    matched_reply = reply_text
-                    break
+if user_input:
+    time_now = datetime.now().strftime("%H:%M")
+    # Append user message
+    st.session_state.messages.append({
+        "role": "user",
+        "text": user_input,
+        "time": time_now
+    })
 
-            with st.spinner("DEEPSEED is thinking..."):
-                time.sleep(2)  # Simulate processing delay
+    matched_reply = None
+    for action_text, reply_text in quick_actions.items():
+        if action_text.lower() in user_input.lower():
+            matched_reply = reply_text
+            break
 
-            assistant_reply = matched_reply or " Based on your message, I can provide some insights on this."
-            st.session_state.messages.append({
-                "role": "assistant",
-                "text": assistant_reply,
-                "time": time_now
-            })
-        else:
-            st.warning("Enter some text")
+    with st.spinner("DEEPSEED is thinking..."):
+        time.sleep(2)  # Simulate processing delay
+
+    assistant_reply = matched_reply or " Based on your message, I can provide some insights on this."
+    st.session_state.messages.append({
+        "role": "assistant",
+        "text": assistant_reply,
+        "time": time_now
+    })
 
 if st.session_state.messages:
     var_total_messages = len(st.session_state.messages)
