@@ -13,7 +13,7 @@ page = st.sidebar.radio("Go To", ["Home", "Display Test", "Streamlit Flow, Image
 
 if page == "Home":
     st.header("Welcome home")
-    st.image("C:/Users/atsim/Pictures/Merge/P2387067.JPG", use_container_width=True)
+    st.image("C:/Users/gwe/Pictures/Wall-p/5929327825758829361_121.jpg", use_container_width=True)
 
 if page == "Form":
     st.header("FORMS")
